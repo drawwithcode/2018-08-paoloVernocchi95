@@ -1,14 +1,30 @@
+var img;
+var img2;
+var img3;
 function preload(){
   // put preload code here
+  img = loadImage("sfondo.jpg");
+  img2 = loadImage("morte_nera.png");
+  img3 = loadImage("millenium1.png");
+  song = loadSound('Star Wars Millenium Falcon Theme.mp3');
 }
 var hit = false;
 var balls = [];
 var poly = [];
 var poly2 = [];
+var X_AXIS = 2;
+var b1, b2, c1, c2;
+var img;
+var img2;
 function setup() {
   createCanvas(windowWidth,windowHeight);
+  textFont('Black Han Sans');
+  textSize(25);
   textAlign(CENTER);
   angleMode(DEGREES);
+  song.play();
+  imageMode(CENTER);
+
   collideDebug(true)
   poly[0] = createVector(0,0);     // set X/Y position
   poly[1] = createVector(random(10,windowWidth/2),random(0, windowHeight/16) );
@@ -59,10 +75,17 @@ function draw() {
   balls[j].move();
   balls[j].display();
 }*/
-background(255);
+/*  b1 = color(4,68,81);
+  b1 = color(4,35,46);
+setGradient(0, 0, width/2, height, b1, b2, X_AXIS);*/
+background(4,68,81);
+image(img, windowWidth/2, height/2, img.width, img.height);
 rz= rotationZ;
 rx= rotationX;
 ry= rotationY;
+stroke("#dc802c");
+strokeWeight(3);
+fill("#ea963c");
 beginShape();
 for(i=0; i < 17; i++){
   vertex(poly[i].x,poly[i].y);
@@ -73,22 +96,28 @@ for(j=0; j < 17; j++){
   vertex(poly2[j].x,poly2[j].y);
 }
 endShape(CLOSE);
-
+noStroke();
 
 push();
 //translate(windowWidth/2,windowHeight/2);
 rotate(90);
 //image(img,10*rx+windowWidth/2,-25*ry , img.width/25, img.height/25);
 pop();
-  ellipse (10*ry+windowWidth/2,25*rx+100,15);
-  ellipse(windowWidth/2,windowHeight -30,50,50);
-  	hit2 = collideCircleCircle(10*ry+windowWidth/2,25*rx+100,15,windowWidth/2,windowHeight -30,100,100)
+  ellipse (15*ry+windowWidth/2,30*rx+100,15);
+  image(img3, 15*ry+windowWidth/2,30*rx+100, 20, 20);
+  fill(255,255,255,0);
+    ellipse(windowWidth/2,windowHeight -30,100);//morte nera
+  image(img2,windowWidth/2,windowHeight -30, img.width/11, img.height/9);
+
+  	hit2 = collideCircleCircle(15*ry+windowWidth/2,30*rx+100,15,windowWidth/2,windowHeight -30,75)
     hit3 = collideCirclePoly(10*ry+windowWidth/2,25*rx+100,15,poly)
+    hit4 = collideCirclePoly(10*ry+windowWidth/2,25*rx+100,15,poly2)
 if(hit2 == true){
   push();
+    background(234,150,60,200);
   translate(windowWidth/2,windowHeight/2);
   rotate(90);
-  fill(0);
+  fill(255);
   text("YOU WIN",0,0);
   text("REFRESH THE PAGE TO PLAY AGAIN ",0,30);
   print("colliding? " + hit);
@@ -96,17 +125,29 @@ if(hit2 == true){
 }
 if(hit3 == true){
   push();
+  background(4,35,46,200);
   translate(windowWidth/2,windowHeight/2);
   rotate(90);
-  fill(0);
-  text("YOU WIN",0,0);
+  fill(255);
+  text("GAME OVER",0,0);
+  text("REFRESH THE PAGE TO PLAY AGAIN ",0,30);
+  print("colliding? " + hit);
+  pop();
+}
+if(hit4 == true){
+  push();
+  background(4,35,46,200);
+  translate(windowWidth/2,windowHeight/2);
+  rotate(90);
+  fill(255);
+  text("GAME OVER",0,0);
   text("REFRESH THE PAGE TO PLAY AGAIN ",0,30);
   print("colliding? " + hit);
   pop();
 }
 
 
-
+  text("DESTROY THE DEATH STAR",windowWidth/2,windowHeight/2-50);
 
 }
 /*if(this.overlap == false){ // prevent from scoreing id overlapped

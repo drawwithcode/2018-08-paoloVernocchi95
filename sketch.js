@@ -145,9 +145,12 @@ if(hit4 == true){
   print("colliding? " + hit);
   pop();
 }
-
-
-  text("DESTROY THE DEATH STAR",windowWidth/2,windowHeight/2-50);
+push();
+translate(windowWidth/2,windowHeight/2);
+rotate(90);
+fill(255);
+  text("DESTROY THE DEATH STAR",0,-50);
+  pop();
 
 }
 /*if(this.overlap == false){ // prevent from scoreing id overlapped

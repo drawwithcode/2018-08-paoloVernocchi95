@@ -128,7 +128,7 @@ if(hit3 == true){
   background(4,35,46,200);
   translate(windowWidth/2,windowHeight/2);
   rotate(90);
-  fill(255);
+  fill(255,0,0);
   text("GAME OVER",0,0);
   text("REFRESH THE PAGE TO PLAY AGAIN ",0,30);
   print("colliding? " + hit);
@@ -139,7 +139,7 @@ if(hit4 == true){
   background(4,35,46,200);
   translate(windowWidth/2,windowHeight/2);
   rotate(90);
-  fill(255);
+  fill(255,0,0);
   text("GAME OVER",0,0);
   text("REFRESH THE PAGE TO PLAY AGAIN ",0,30);
   print("colliding? " + hit);
